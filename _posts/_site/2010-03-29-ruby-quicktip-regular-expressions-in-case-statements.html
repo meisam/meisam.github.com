@@ -1,0 +1,46 @@
+<p>Did you know that you can use regular expressions in <code>case</code> statements in Ruby to check for a match? For instance, if I&#8217;m implementing some <code>method_missing</code> functionality and I want to check for bang or question methods, I might be tempted to do something like this:</p>
+<div>
+<pre>
+<code class='ruby'>def method_missing(name, *args)
+name = name.to_s
+if name.match(/!$/)
+puts &quot;Bang Method!&quot;
+elsif name.match(/\?$/)
+puts &quot;Query Method?&quot;
+else
+super
+end
+<p>end</code><br />
+  </pre></p>
+</div>
+<p>But it&#8217;d be much cleaner if instead it looked like this:</p>
+<div>
+<pre>
+<code class='ruby'>def method_missing(name, *args)
+case name.to_s
+when /!$/
+puts &quot;Bang Method!&quot;
+when /\?$/
+puts &quot;Query Method?&quot;
+else
+super
+end
+<p>end</code><br />
+  </pre></p>
+</div>
+<p>This is great, but now what if we want to call out a method for bang and question methods? Thankfully Ruby has us covered there as well:</p>
+<div>
+<pre>
+<code class='ruby'>def method_missing(name, *args)
+case name.to_s
+when /^(.*)!$/
+bang_method($1)
+when /^(.*)\?$/
+question_method($1)
+else
+super
+end
+<p>end</code><br />
+  </pre></p>
+</div>
+<p>By using the <code>$1</code> global variable we can access the last regular expression match performed by ruby. This is just one of those little details that makes working with Ruby such a joy.</p>

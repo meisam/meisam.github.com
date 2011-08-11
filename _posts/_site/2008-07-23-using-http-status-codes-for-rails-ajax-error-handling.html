@@ -1,0 +1,47 @@
+<p>A problem that often arises in <span class="caps">AJAX</span>-based web applications is how to handle it when things go wrong. The user should be informed of the problem in a descriptive manner, but obviously the internal workings of the application should not be revealed. A generic and useful way to handle this problem is to use <span class="caps">HTTP</span> Status Codes to indicate the type of failure, and use the javascript to cope appropriately.</p>
+<p>In this example I will be using jQuery, but the principles behind are just as applicable to Prototype or any other Javascript library.</p>
+<h3>Your Friends 403 and 500</h3>
+<p>Anyone who&#8217;s built a Rails site is familiar with the 500 error. That&#8217;s the generic exception code thrown whenever something goes wrong in your application. Users should, hopefully, never ever see this when they&#8217;re using the site. However, oftentimes there are exceptions or errors that users should experience just as result of improperly filling out fields, permissioning, etc. So how do we differentiate?</p>
+<p>The Rails <code>render</code> method has the ability to render out an arbitrary <span class="caps">HTTP</span> Status Code (i.e. 500 for error, 404 for not found, and <a href="http://www.w3.org/Protocols/rfc2616/rfc2616-sec10.html">many more</a>). The &#8220;403 Forbidden&#8221; code means that the server understood the request made of it, but is refusing to complete it. This sounds like an apt description for typically &#8220;caught&#8221; exceptions. So let&#8217;s use the 403 code to intelligently handle the exceptions that we <strong>want</strong> to be seen by the user.</p>
+<h3>In the controller</h3>
+<p>Let&#8217;s take the simplest example, an invalid record. If you are creating a record via <span class="caps">AJAX</span>, a <code>flash[:error]</code> with a <code>render :action =&gt; "new"</code> is not going to suffice. Let&#8217;s try something like this instead:</p>
+<pre name="code" class="ruby">class ItemsController &lt; ApplicationController
+  def create
+    Item.create!(params[:item])
+    # continue on your merry way if it works
+  rescue ActiveRecord::RecordInvalid =&gt; e
+    respond_to do |format|
+      format.html { 
+        flash.now[:error] = "There was a problem creating the item."
+        render :action =&gt; "new"
+      }
+      # Render out the validation failed message with a
+      # 403 status code.
+      format.js { render :text =&gt; e.message, :status =&gt; 403 }
+    end
+  end
+end</pre>
+<p>All right, now that we&#8217;ve got it handled on the controller side, it&#8217;s time to work some Javascript magic on our <span class="caps">AJAX</span> call.</p>
+<pre name="code" class="javascript">
+$('a#ajax_link').click(function() {
+  $.ajax({
+    url: '/items', 
+    success:function(data, textStatus) {
+      // do success things
+    },
+    error:function(request, textStatus, errorThrown) {
+      // Use the specific message for a 403, but
+      // a generic failure message for a 500
+      var message = (request.status == 403) ? 
+        request.responseText : "An unknown error occurred. Support has been contacted.";
+      // Simple alert for example, but you can handle
+      // however you want, such as populating an error message
+      // div and making it appear.
+      alert(message);
+    }
+    return false;
+  });
+});
+</pre>
+<p>Now when your <span class="caps">AJAX</span> request fails, it will render a user-friendly error message if it&#8217;s an &#8216;expected&#8217; error or a generic message if the request fails with an unexpected exception.</p>
+<p>This is a simple example, but by building a general framework for error expectations you can make it much easier to provide user-friendly error handling that gives them all of the information they need without revealing any of your internal processes.</p>

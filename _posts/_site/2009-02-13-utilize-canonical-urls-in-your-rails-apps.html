@@ -1,0 +1,14 @@
+<p>Today came the announcement that all of the major search engines are <a href="http://www.seomoz.org/blog/canonical-url-tag-the-most-important-advancement-in-seo-practices-since-sitemaps">going to support a &#8216;canonical&#8217; <span class="caps">URL</span> hint</a> that will allow site owners to specify a single <span class="caps">URL</span> for content that may be replicated across many URLs (such as for categories etc.).</p>
+<p>To make use of this in Rails applications, I&#8217;ve written a plugin that allows you to easily specify canonical URLs for your content. To install it as a gem, just add this to your <code>environment.rb</code>:</p>
+<pre name='code' class='ruby'>config.gem 'mbleigh-canonical-url', :source =&gt; 'http://gems.github.com', :lib =&gt; 'canonical_url'</pre>
+<p>Using it is extremely simple; just add this to the <code>&lt;head&gt;</code> section of your layout:</p>
+<pre name='code' class='html'>&lt;%= canonical_link_tag %&gt;</pre>
+<p>And in your controllers, any time you want to specify a canonical <span class="caps">URL</span> you can do so like this:</p>
+<pre name='code' class='ruby'>class BlogController &lt; ApplicationController
+  def show
+    @post = find_post # assume this is a standard blog post type record
+    canonical_url blog_post_path(post.year, post.month, post.day, post.slug)
+  end
+end</pre>
+<p>Now any time the <code>show</code> action is run, no matter how the routing came to be there, a single canonical <span class="caps">URL</span> will be shown in the header. If no canonical <span class="caps">URL</span> is specified in the controller (or through the <code>canonical_link_tag</code> helper directly) the helper will not output anything, making it completely harmless to add to any application.</p>
+<p>The source for the plugin is <a href="http://github.com/mbleigh/canonical-url">available on GitHub</a>. So go forth and canonize your applications!</p>
