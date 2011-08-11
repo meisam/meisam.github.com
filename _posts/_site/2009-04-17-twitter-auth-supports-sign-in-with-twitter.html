@@ -1,5 +1,0 @@
-<p>Twitter recently implemented <a href="http://apiwiki.twitter.com/Sign-in-with-Twitter">Sign in with Twitter</a>, a convenience layer on top of their OAuth solution that provides a better user experience for those making use of OAuth as a sign-in strategy for their applications. I have just added support for this new feature to <a href="http://mbleigh.com/twitter-auth">TwitterAuth</a>. This is available immediately to new applications made with TwitterAuth as the default implementation.</p>
-<p align='center'><img src="http://apiwiki.twitter.com/f/1239839565/sign_in_with_twitter.gif" alt="" /></p>
-<p>If you already have a TwitterAuth application that you would like to utilize the new sign in method all you need to do is add one line to each of your <code>twitter_auth.yml</code> environments:</p>
-<pre name='code' class='yaml'>authorize_path: "/oauth/authenticate"</pre>
-<p>You don&#8217;t need to reset any user data or make any other changes, and when you restart your server people should be able to take advantage of the new experience. Enjoy!</p>
