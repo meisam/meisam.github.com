@@ -1,0 +1,55 @@
+<p>Last week the Uberkit kicked off with some helpers to make your menu-building much easier. This week we&#8217;re following it up with <b>UberForms</b>, a Form Builder that DRYs up your repetitive form stresses. Let&#8217;s see how it works!</p>
+<h3>Building an Uber-er Form</h3>
+<p>UberForms automatically generate all of the standard boilerplate <span class="caps">HTML</span> that goes around your forms. By wrapping everything up in an easily style-able package, it becomes a much easier business to make new forms as well as re-use form styling across projects. With the form markup taken care of, you can focus on the more important aspects of your UI building and keep your views deadly clean.</p>
+<p>While UberForms are available as a standard form builder (<code>Uberkit::Forms::Builder</code>), you may find it more useful in its helper form (automatically available when the UberKit plugin is loaded:</p>
+<pre name="code" class="html">&lt;% uberform_for :user do |f| %&gt;
+  &lt;%= f.text_field :login %&gt;
+  &lt;%= f.password_field :password %&gt;
+  &lt;%= f.submit "Submit"%&gt;
+&lt;% end %&gt;</pre>
+<p>This will automatically be translated into some nice, <span class="caps">CSS</span>-ready <span class="caps">HTML</span>:</p>
+<pre name="code" class="html">&lt;form method="post" class="uberform" action="/users"&gt;
+  &lt;div class="field_row"&gt;
+    &lt;label for="user_login"&gt;Login:&lt;/label&gt;
+    &lt;input type="text" size="30" name="user[login]" id="user_login" class="text_field"/&gt;
+    &lt;br/&gt;
+  &lt;/div&gt;
+  &lt;div class="field_row"&gt;
+    &lt;label for="user_password"&gt;Password:&lt;/label&gt;
+    &lt;input type="password" size="30" name="user[password]" id="user_password" class="password_field"/&gt;
+    &lt;br/&gt;
+  &lt;/div&gt;
+  &lt;button type="submit"&gt;Submit&lt;/button&gt;
+&lt;/form&gt;</pre>
+<p>You can also change the label, add a description or help text to a field by adding the relevant options:</p>
+<pre name="code" class="html">&lt;%= f.text_field :login, :label =&gt; "Username", 
+                         :help =&gt; "Only a-z and underscores.", 
+                         :description =&gt; "The name you will use to log in." %&gt;</pre>
+<p>Becomes&#8230;</p>
+<pre name="code" class="html">&lt;div class="field_row"&gt;
+  &lt;label for="user_login"&gt;Username:&lt;/label&gt;
+  &lt;input type="text" size="30" name="user[login]" label="Username" id="user_login" help="Only a-z and underscores." description="The name you will use to log in." class="text_field"/&gt;
+  &lt;span class="help"&gt;Only a-z and underscores.&lt;/span&gt;
+  &lt;span class="description"&gt;The name you will use to log in.&lt;/span&gt;
+  &lt;br/&gt;
+&lt;/div&gt;</pre>
+<p>Finally, you can create custom <span class="caps">HTML</span> inside an UberForm field by passing a block:</p>
+<pre name="code" class="html">&lt;% f.custom :label =&gt; "State", :for =&gt; "user_state" do |f| %&gt;
+  &lt;%= state_select :user, :state %&gt;
+&lt;% end %&gt;</pre>
+<p>Becomes&#8230;</p>
+<pre name="code" class="html">&lt;div class="field_row"&gt;
+  &lt;label for="user_state"&gt;State:&lt;/label&gt;
+  &lt;div class="pseudo_field"&gt;
+    &lt;select id="user_state"&gt;...&lt;/select&gt;
+  &lt;/div&gt; 
+  &lt;br/&gt;
+&lt;/div&gt;</pre>
+<p>Easy, right? That&#8217;s all there is to it, now you can be UberForming to your heart&#8217;s content</p>
+<h3>Installation</h3>
+<p>To install the UberKit (which <a href="http://www.intridea.com/tags/uberkit">includes more than just forms</a>) you can do so either as a gem or a traditional plugin. As a gem, just add this to your environment.rb:</p>
+<pre name="code" class="ruby">config.gem 'mbleigh-uberkit', :lib =&gt; 'uberkit', :source =&gt; 'http://gems.github.com'</pre>
+<p>As a traditional Rails plugin:</p>
+<pre><code>script/plugin install git://github.com/mbleigh/uberkit.git</pre>
+<h3>The Future of the UberKit</h3>
+<p>These two pieces are pretty helpful, but there&#8217;s more coming for the UberKit. Stay tuned for more updates, including more hooks and ways to customize the UberKit to fit your needs as a developer.</p>
