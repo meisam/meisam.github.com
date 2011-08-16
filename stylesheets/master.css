@@ -78,6 +78,8 @@ a:visited {
 
 #content {
   padding: 0.5em 0;
+  padding-bottom: 2em;
+  margin-bottom: 2em;
 }
 
 #content h2 {
@@ -183,12 +185,12 @@ div.related {
 #footer {
   background-position: top;
   margin: 1em 0 0 0;
-  position:absolute;
-  bottom:0;
   width: 100%;
+  position: fixed;
+  bottom: 0px;
   color: #444;
   font-size: 0.9em;
-  padding:0;
+  padding:0px;
   text-align: center;
 }
 
