@@ -1,0 +1,10 @@
+---
+layout: post
+title: Migrating to Github
+---
+
+I've been blogging in recent years. But coming from the wonderland, I've had a lot of problems publishing my post. I was using "Word Press":http://www.wordpress.com for a long time, before it was blocked by the government of the wonderland. My posts were in Persian, which is my first language, but since it was filtered in the Wonderland, I lost a lot of readers who were from the Wonderland.
+
+I set up a new blog in "Persianblog":http://www.persianblog.ir, but since it was working under the silly rules and regulations of the Wonderland, it was severely subject to censorship. Consequently, sometimes I couldn't publish what I wanted.
+
+When I saw some folks on Github that use Jekyll as a platform for their blogs, I decided to move my blogs to Github. In a few days/weeks I'll import my posts from my other blogs.
