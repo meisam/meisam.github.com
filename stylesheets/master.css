@@ -28,19 +28,19 @@ a:visited {
 }
 
 #header {
-  height: 80px;
+  height: 75px;
 }
 #header h1 {
   float: left;
+  margin:0px;
 }
 
 #header h1 a {  
   margin-top: 0px;
-  margin-bottom: 0px;
   display: block;
   background: url(/images/title.gif) no-repeat top left;
   width: 405px;
-  height: 220px;
+  height: 75px;
   text-indent: -999em;
 }
 
@@ -203,9 +203,9 @@ div.related {
 }
 
 #content .home_box h2 {
-  background: #6e9b20 url(/images/gray_gradient.gif) repeat-x bottom;
+  background: #bababa url(/images/gray_gradient.gif) repeat-x bottom;
   padding: 0.3em 0.5em;
-  border-bottom: 3px solid #262;
+  border-bottom: 3px solid #ababab;
   margin-bottom: 0em;
   color: white;
   font-weight: normal;
