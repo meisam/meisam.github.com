@@ -1,0 +1,8 @@
+---
+title: About Meisam Fathi
+layout: master
+---
+
+h2. Why I'm called Robot
+
+You really do not expect me to tell you a long story here, do you?
