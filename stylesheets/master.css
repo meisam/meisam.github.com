@@ -122,7 +122,6 @@ div.post {
 
 .post h1 a, #content h2, #footer {
   text-decoration: none;
-  clear: left;
   display: block;
   color: black;
   padding: 0.3em 0.5em;
@@ -188,8 +187,7 @@ div.related {
   background-position: top;
   margin: 1em 0 0 0;
   width: 100%;
-  position: fixed;
-  bottom: 0px;
+  clear:left;
   color: #444;
   font-size: 0.9em;
   padding:0px;
@@ -203,7 +201,6 @@ div.related {
 }
 
 .home_box {
-  float: left;
 }
 
 #content .home_box h2 {
@@ -236,19 +233,15 @@ div.related {
 }
 
 #home_left {
-  position:absolute;
-  right: 280px;
-  left:0px;
-  margin-left:0.5em;
-  margin-right:0.5em;
+  padding:1em;
+  margin-right:300px;
 }
 
 #home_right {
-  width: 260px;
-  position: absolute;
-  right:0;
-  margin-left: 1em;
-  margin-right: 1em;
+  float:right;
+  width:260px;
+  margin:0;
+  padding:1em;
 }
 
 .clearfix { clear: both;}
@@ -264,7 +257,6 @@ code {
 
 .repo {
   text-decoration: none;
-  clear: left;
   display: block;
   color: black;
   padding: 0.5em 0.7em;
