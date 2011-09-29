@@ -2,5 +2,7 @@
 layout: post
 title: First Impression of a Professor
 ---
-I'm taking a course this quarter with "Michael Bond":http://www.cse.ohio-state.edu/~mikebond a young and enthusiastic professor in the "CSE":http://cse.osu.edu department. Today, he had a talk today about his research interest which is dynamic program analysis for detecting concurrency bugs. It is very likely that I'll be working with during my studies and I'm really glad. He knows a lot of dominant people in the field of programming languages (like "Kathryn McKinley":http://www.cs.utexas.edu/~mckinley) and I wont be surprised to see in near future that Mike becomes a magnate in this field. 
- 
+I'm taking a course this quarter with "Michael Bond":http://www.cse.ohio-state.edu/~mikebond a young and enthusiastic professor in the "CSE":http://cse.osu.edu department. Today, he had a talk today about his research interest which is dynamic program analysis for detecting concurrency bugs. It is very likely that I'll be working with during my studies and I'm really glad. He knows a lot of dominant people in the field of programming languages and I wont be surprised to see in near future that Mike becomes a magnate in this field. 
+
+Definitely, I'm not qualified for joining this research group, yet. I've not read the seminal papers in this research area, I've no idea about the challenges, and I do not have any _bright_ idea that can be implemented. But I'll push myself as hard as I can to become qualified for this research group.
+
